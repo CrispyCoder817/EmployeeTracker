@@ -280,11 +280,11 @@ function employeeArray() {
     `SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager
   FROM employee
   JOIN role
-  ON employee.role_id = r.id
+  ON employee.role_id = role.id
   JOIN department
-  ON department.id = r.department_id
+  ON department.id = role.department_id
   JOIN employee
-  ON m.id = employee.manager_id`
+  ON manager.id = employee.manager_id`
 
   connection.query(query, function (err, res) {
     if (err) throw err;
